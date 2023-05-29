@@ -1,0 +1,33 @@
+{
+  "name": "bcra-exchange",
+  "version": "0.1",
+  "description": "A wrapper for the BCRA API to get official exchange rates by date",
+  "type": "module",
+  "types": "types.d.ts",
+  "files": ["/build"],
+  "main": "build/index.js",
+  "scripts": {
+    "test": "vitest --watch",
+    "start": "node --loader ts-node/esm src/main.ts",
+    "test:ui": "vitest --ui",
+    "build": "tsc -p tsconfig.prod.json",
+    "prepare": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^22.0.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "@vitest/ui": "^0.31.1",
+    "eslint": "^8.41.0",
+    "ts-node-dev": "^2.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "vitest": "^0.31.1"
+  }
+}
