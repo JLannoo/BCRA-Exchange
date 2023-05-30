@@ -1,6 +1,6 @@
 {
   "name": "bcra-exchange",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A crawler for the BCRA (Banco Central de la República Argentina) frontend to get official exchange rates by date",
   "type": "module",
   "types": "build/main.d.ts",
