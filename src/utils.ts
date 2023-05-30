@@ -1,5 +1,6 @@
 import { JSDOM } from "jsdom";
 import { currencies } from "./currencies.js";
+import { BCRA_URLS, REGEX } from "./consts.js";
 
 export async function fetchRetries (fn: () => Promise<any>, retries = 3) {
 	for (let i = 0; i < retries; i++) {
@@ -40,9 +41,7 @@ export async function getResultFromHTML (text: string){
 
 export async function validateLatestDate (date: string){
 	return await fetchRetries(async () => {
-		const URL = "https://www.bcra.gob.ar/PublicacionesEstadisticas/Evolucion_moneda.asp";
-
-		const response = await fetch(URL);
+		const response = await fetch(BCRA_URLS.CURRENCY_SELECT);
 		const text = await response.text();
 
 		const dates = await parseOptionDatesFromHTML(text);
@@ -57,9 +56,9 @@ export async function validateLatestDate (date: string){
 }
 
 async function parseOptionDatesFromHTML (text: string) {
-	const select = text.match(/<select name="Fecha"[\s\S]*?<\/select>/g)?.[0].replace(/\n|\r|\t/g, "");
-	const options = select?.match(/<option value=([\s\S]*?)>([\s\S]*?)<\/option>/g);        
-	const dates = options?.map((option) => option.match(/<option value=([\s\S]*?)>/)?.[1]) || [];
+	const select = text.match(REGEX.DATE_SELECT)?.[0].replace(/\n|\r|\t/g, "");
+	const options = select?.match(REGEX.SELECT_OPTIONS);
+	const dates = options?.map((option) => option.match(REGEX.SELECT_OPTION_VALUE)?.[1]) || [];
 
 	return dates;
 }
@@ -74,7 +73,7 @@ export async function getFullFetchURL (date: string, currency: string){
 		Fecha: date,
 	});
     
-	const URL = "https://www.bcra.gob.ar/PublicacionesEstadisticas/Evolucion_moneda_3.asp?" + params.toString();
+	const URL = BCRA_URLS.CURRENCY_RESULT + "?" + params.toString();
 
 	return URL;
 }

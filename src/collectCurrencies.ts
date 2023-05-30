@@ -2,8 +2,7 @@ import { JSDOM } from "jsdom";
 import fs from "node:fs";
 
 import { CurrencyObject } from "./types";
-
-const DEFAULT_CHARSET = "iso-8859-1";
+import { BCRA_URLS , DEFAULT_CHARSET, SELECTORS } from "./consts";
 /**
  * Collects all currencies from the BCRA website and saves them to `currencies.ts`
  * 
@@ -12,7 +11,7 @@ const DEFAULT_CHARSET = "iso-8859-1";
 async function collectCurrencies () {
     console.log("Collecting currencies...")
 
-	const response = await fetch("https://www.bcra.gob.ar/PublicacionesEstadisticas/Evolucion_moneda.asp");
+	const response = await fetch(BCRA_URLS.CURRENCY_SELECT);
 
 	// Get charset from response in case it changes
 	const contentType = response.headers.get("content-type") || "";
@@ -23,7 +22,7 @@ async function collectCurrencies () {
 
 	const dom = new JSDOM(string);
 
-	const select = dom.window.document.querySelector("select[name='Moneda']") as HTMLSelectElement;
+	const select = dom.window.document.querySelector(SELECTORS.CURRENCY_SELECT) as HTMLSelectElement;
 	const currencies = Array.from(select.options)
 		.reduce((acc: CurrencyObject[], option) => {
 			if (option.value !== "") {
