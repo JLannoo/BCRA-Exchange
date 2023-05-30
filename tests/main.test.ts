@@ -1,7 +1,7 @@
 import { it, describe, expect } from "vitest";
 
 import { getCurrencyToday , getCurrencyByDate } from "../src/main";
-import { CurrenciesEnum, Result } from "../types";
+import { CurrenciesEnum, Result } from "../src/types";
 
 describe("test", () => {
 	it("should work", () => {

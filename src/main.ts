@@ -1,8 +1,6 @@
 import { JSDOM } from "jsdom";
-import { CurrencyObject, Result } from "../types";
+import { CurrenciesEnum, CurrencyObject, Result } from "./types";
 import fs from "node:fs";
-
-import { currencies } from "./currencies.js";
 
 import { fetchRetries, formatDate, getFullFetchURL, getResultFromHTML, validateLatestDate } from "./utils.js";
 
@@ -43,12 +41,12 @@ async function collectCurrencies () {
 /**
  * Gets today's value of a currency
  */
-export async function getCurrencyToday (currency: typeof currencies[number]["name"]): Promise<Result> {
+export async function getCurrencyToday (currency: CurrenciesEnum): Promise<Result> {
 	const today = new Date();
 	return getCurrencyByDate(currency, today);
 }
 
-export async function getCurrencyByDate (currency: typeof currencies[number]["name"], date: Date): Promise<Result> {
+export async function getCurrencyByDate (currency: CurrenciesEnum, date: Date): Promise<Result> {
 	// Date in format YYYY.MM.DD
 	const dateString = formatDate(date);
 	const validatedDate = await validateLatestDate(dateString);

@@ -1,4 +1,4 @@
-import { currencies } from "./src/currencies";
+import { currencies } from "./currencies";
 
 export interface CurrencyObject {
     id: string;
@@ -16,9 +16,9 @@ export interface Result {
     value: number;
 }
 
-export type CurrenciesEnum = typeof currencies[number]["name"];
+export type CurrenciesEnum = typeof currencies[number]["id"];
 
-declare module "BCRA-Wrapper" {
+declare module "bcra-exchange" {
     export function getCurrencyToday(currency: CurrenciesEnum): Promise<Result>;
     export function getCurrencyByDate(currency: CurrenciesEnum, date: Date): Promise<Result>;
 }
