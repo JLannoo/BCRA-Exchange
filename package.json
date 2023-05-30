@@ -18,10 +18,11 @@
   "main": "build/main.js",
   "module": "build/main.js",
   "scripts": {
+    "collect": "node --loader ts-node/esm src/collectCurrencies.ts",
     "test": "vitest --watch",
     "test:ui": "vitest --ui",
     "build": "tsup src/main.ts --dts --format cjs,esm --clean --minify --out-dir build",
-    "prepare": "npm run build"
+    "prepare": "npm run collect && npm run build"
   },
   "keywords": [
     "bcra",
