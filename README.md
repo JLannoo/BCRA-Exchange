@@ -26,7 +26,7 @@ await getCurrencyByDate('Dolar Estadounidense', new Date('2020-01-01'));
 ```
 
 This will return something like:
-```json
+```javascript
 {
     "currency": "Dolar Estadounidense",
     "dateTried": "2020-01-01T00:00:00.000Z",
