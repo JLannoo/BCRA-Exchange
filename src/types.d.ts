@@ -16,7 +16,7 @@ export interface Result {
     value: number;
 }
 
-export type CurrenciesEnum = typeof currencies[number]["id"];
+export type CurrenciesEnum = typeof currencies[number]["name"];
 
 declare module "bcra-exchange" {
     export function getCurrencyToday(currency: CurrenciesEnum): Promise<Result>;
