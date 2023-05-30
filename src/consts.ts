@@ -13,4 +13,9 @@ export const REGEX = {
     DATE_SELECT: /<select name="Fecha"[\s\S]*?<\/select>/g,
     SELECT_OPTIONS: /<option value=([\s\S]*?)>([\s\S]*?)<\/option>/g,
     SELECT_OPTION_VALUE: /<option value=([\s\S]*?)>/,
+
+    TABLE: /<table[^>]*>([\s\S]*?)<\/table>/,
+    TABLE_ROWS: /<tr[^>]*>([\s\S]*?)<\/tr>/g,
+    TABLE_CELLS: /<td[^>]*>([\s\S]*?)<\/td>/g,
+    TABLE_CELL_VALUE: /<td[^>]*>([\s\S]*?)<\/td>/,
 }

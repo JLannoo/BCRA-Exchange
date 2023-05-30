@@ -1,4 +1,3 @@
-import { JSDOM } from "jsdom";
 import { currencies } from "./currencies.js";
 import { BCRA_URLS, REGEX } from "./consts.js";
 
@@ -22,19 +21,20 @@ export function formatDate (date: Date) {
 }
 
 export async function getResultFromHTML (text: string){
-	const dom = new JSDOM(text);
+	const match = text.match(REGEX.TABLE);
+	if (!match) throw new Error("No table found");
 
-	const table = dom.window.document.querySelector(".table-BCRA") as HTMLTableElement;
+	const tableHtml = match[0];
+	const rows = tableHtml.match(REGEX.TABLE_ROWS)?.slice(2) || [];
 
-	const rows = Array.from(table.rows).slice(2);
+	if (rows.length === 0) throw new Error("No data found");
 
-	if(rows.length === 0) throw new Error("No data found");
-
-	const cells = Array.from(rows[0].cells).slice(1);
+	const cells = rows[0].match(REGEX.TABLE_CELLS)?.slice(1) || [];
 	const lastCell = cells.pop();
-	const data = parseFloat(lastCell?.textContent?.trim().replace(",", ".") || "");
+	const lastCellText = lastCell?.match(REGEX.TABLE_CELL_VALUE)?.[1].trim();
+	const data = parseFloat(lastCellText?.replace(",", ".") || "");
 
-	if(isNaN(data)) throw new Error("No data found");
+	if (isNaN(data)) throw new Error("No data found");
 
 	return data;
 }
@@ -74,6 +74,9 @@ export async function getFullFetchURL (date: string, currency: string){
 	});
     
 	const URL = BCRA_URLS.CURRENCY_RESULT + "?" + params.toString();
+
+	console.log(URL);
+	
 
 	return URL;
 }
