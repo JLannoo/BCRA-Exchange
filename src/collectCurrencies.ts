@@ -2,7 +2,7 @@ import { JSDOM } from "jsdom";
 import fs from "node:fs";
 
 import { CurrencyObject } from "./types";
-import { BCRA_URLS , DEFAULT_CHARSET, SELECTORS } from "./consts";
+import { BCRA_URLS , DEFAULT_CHARSET, SELECTORS } from "./consts.js";
 /**
  * Collects all currencies from the BCRA website and saves them to `currencies.ts`
  * 
