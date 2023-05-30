@@ -3,6 +3,12 @@ A lightweight fully type-safe crawler for the BCRA (Banco Central de la Repúbli
 
 Easily get the exchange rate from Pesos Argentinos to any other currency and date provided by the BCRA.
 
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [To-Do](#to-do)
+
+## Features
 > Under 3kb gzipped and no dependencies.
 ![7.7k (gzipped: 2.8k)](./resources/size.png)
 
@@ -37,5 +43,7 @@ This will return something like:
 }
 ```
 
-
-
+## To-Do
+- [ ] Add more tests
+- [ ] Better error handling
+- [ ] CI/CD
