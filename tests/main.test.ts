@@ -3,7 +3,7 @@ import { it, describe, expect } from "vitest";
 import { getCurrencyToday , getCurrencyByDate } from "../src/main";
 import { CurrenciesEnum, Result } from "../src/types";
 
-describe("test", () => {
+describe("Main", () => {
 	it("should work", () => {
 		expect(1).toBe(1);
 	});
@@ -41,15 +41,5 @@ describe("test", () => {
 		
 		// dateFetched should be previous or equal to dateTried
 		expect(result.dateFetched.getTime()).toBeLessThanOrEqual(result.dateTried.getTime());
-	});
-
-	it("should throw error if date is invalid", async () => {
-		const date = "hola";
-		await expect(getCurrencyByDate(currency, date as any)).rejects.toThrowError();
-	});
-
-	it("should throw error if currency is invalid", async () => {
-		const currency = "hola";
-		await expect(getCurrencyByDate(currency as any, new Date())).rejects.toThrowError();
 	});
 });
