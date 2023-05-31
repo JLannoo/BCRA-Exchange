@@ -1,3 +1,4 @@
+import { NodeVersionError } from "./errors";
 import { CurrenciesEnum, Result } from "./types";
 import { fetchRetries, formatDate, getFullFetchURL, getResultFromHTML, validateLatestDate } from "./utils.js";
 
@@ -10,6 +11,8 @@ export async function getCurrencyToday (currency: CurrenciesEnum): Promise<Resul
 }
 
 export async function getCurrencyByDate (currency: CurrenciesEnum, date: Date): Promise<Result> {
+	if(!fetch) throw new NodeVersionError();
+
 	// Date in format YYYY.MM.DD
 	const dateString = formatDate(date);
 	const validatedDate = await validateLatestDate(dateString);
