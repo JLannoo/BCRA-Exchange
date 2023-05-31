@@ -48,5 +48,5 @@ This will return something like:
 
 ## To-Do
 - [ ] Add more tests
-- [ ] Better error handling
+- [x] Better error handling
 - [ ] CI/CD
