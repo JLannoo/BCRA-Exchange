@@ -9,6 +9,9 @@ Easily get the exchange rate from Pesos Argentinos to any other currency and dat
 - [To-Do](#to-do)
 
 ## Features
+
+> ### Only works with Node.js >= 18 (Fetch API is required)
+
 > Under 3kb gzipped and no dependencies.
 ![7.7k (gzipped: 2.8k)](./resources/size.png)
 
